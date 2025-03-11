@@ -317,9 +317,9 @@ void sdrad_constructor()
                            sgm_ptr -> pdi[smd_ptr -> smd_monitor_sdi]); 
     assert(status != -1); 
 
-
+ 
     sdi_ptr -> sdi_size_of_stack = get_default_stack_size();
-    sdi_ptr -> sdi_address_stack = mmap(NULL,                                  
+    sdi_ptr -> sdi_address_stack = (sdrad_da_t)mmap(NULL,                                  
                 sdi_ptr -> sdi_size_of_stack,
                 PROT_READ | PROT_WRITE,
                 MAP_PRIVATE | MAP_STACK |MAP_GROWSDOWN |
@@ -646,7 +646,7 @@ void sdrad_delete_control_structure(sdrad_global_manager_t *sgm_ptr,
 
     //if list is empty
     if(head == NULL) {
-        return NULL;
+        return;
     }
      
     if(sgm_ptr -> udi_control_head -> sdi == sdi){

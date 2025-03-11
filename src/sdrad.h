@@ -78,7 +78,7 @@ extern int32_t end;
 
 
 
-typedef uint64_t      sdrad_da_t; 
+typedef uintptr_t     sdrad_da_t; 
 typedef int32_t       sdrad_domain_t; 
 typedef uint64_t      sdrad_domain_size_t;
 typedef uint64_t      udi_t;
@@ -253,13 +253,16 @@ extern sdrad_domain_t
 sdrad_request_sdi();
 
 extern void 
-__sdrad_exit();
+__sdrad_exit(void *base_address);
 
 extern int32_t 
 sdrad_search_udi_control(udi_t udi, udi_control_t  *udi_ptr);
 
 extern tlsf_t *
 sdrad_search_tlsf_control(void *ptr, sdrad_global_manager_t *sgm_ptr);
+
+extern int32_t 
+sdrad_find_free_thread_id(sdrad_global_manager_t *sgm_ptr);
 
 extern void *
 sdrad_insert_thread_structure(sdrad_global_manager_t *sgm_ptr);

@@ -71,7 +71,7 @@ void sdrad_mutex_constructor(sdrad_global_manager_t *sgm_ptr)
 
 }
 
-
+#ifdef SDRAD_MULTITHREAD
 /**
  * @brief  before start routine functions
  * 
@@ -249,7 +249,6 @@ int32_t pthread_create(pthread_t *thread,
     return ret;
 }
 
-
 int32_t pthread_join(pthread_t thread, void **value_ptr)
 {
     sdrad_global_manager_t              *sgm_ptr;
@@ -260,7 +259,7 @@ int32_t pthread_join(pthread_t thread, void **value_ptr)
     if (real_pthread_join == NULL)
         pthread_load_sym(); 
 
-    ret = real_pthread_join(thread, value_ptr);
+    ret = real_pthread_join(&thread, value_ptr);
     sgm_ptr = (sdrad_global_manager_t *)&sdrad_global_manager; 
 
     int32_t thread_index = sdrad_get_sti_from_tid(sgm_ptr, thread); 
@@ -270,5 +269,6 @@ int32_t pthread_join(pthread_t thread, void **value_ptr)
     sgm_ptr -> sgm_thread_id[thread_index] = THREAD_NONOCCUPIED;
     return ret;
 }
+#endif
 
 

@@ -58,7 +58,7 @@ int32_t sdrad_dprotect(udi_t udi, udi_t source_domain_index, int32_t access_stat
     sdrad_thread_metadata_t     *stm_ptr, *stm_parent_ptr; 
     sdrad_global_manager_t      *sgm_ptr;
     sdrad_d_info_t              *sdi_ptr, *sdi_parent_ptr;
-    udi_t                       parent_thread; 
+    sdrad_domain_t              parent_thread; 
     int32_t                     pdi_source_domain, pdi_parent_domain, pdi_of_udi; 
     int32_t                     sdi, ssdi, active_domain, parent_domain; 
 
